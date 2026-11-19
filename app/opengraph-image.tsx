@@ -18,22 +18,37 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "80px",
-          background: "#131210",
-          color: "#ece8e1",
+          background: "radial-gradient(70% 90% at 50% 0%, #1f1f23 0%, #09090b 70%)",
+          color: "#fafafa",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 28, color: "#a39e94" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 28, color: "#a1a1aa" }}>
+          <div style={{ width: 14, height: 14, borderRadius: 999, background: "#4ade80" }} />
           {site.name} · {site.title}
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", fontSize: 72, lineHeight: 1.1 }}>
-          <div style={{ display: "flex" }}>{site.headline}</div>
-          <div style={{ display: "flex", color: "#e8a45c" }}>{site.headlineItalic}</div>
+        <div style={{ display: "flex", fontSize: 80, fontWeight: 700, letterSpacing: -3, lineHeight: 1.05, maxWidth: 1000 }}>
+          {site.headline}
         </div>
 
-        <div style={{ display: "flex", fontSize: 28, color: "#a39e94", borderTop: "2px solid #2c2a26", paddingTop: 28 }}>
-          {site.projects.map((p) => p.name).join("  ·  ")} · live demos
+        <div style={{ display: "flex", gap: 14 }}>
+          {site.projects.map((p) => (
+            <div
+              key={p.name}
+              style={{
+                display: "flex",
+                fontSize: 26,
+                padding: "10px 20px",
+                borderRadius: 12,
+                border: "1px solid rgba(255,255,255,0.14)",
+                background: "#18181b",
+              }}
+            >
+              {p.name}
+            </div>
+          ))}
+          <div style={{ display: "flex", fontSize: 26, padding: "10px 4px", color: "#a1a1aa" }}>live demos</div>
         </div>
       </div>
     ),

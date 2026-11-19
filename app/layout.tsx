@@ -1,17 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
 import { site } from "@/content/site";
 import { siteUrl } from "@/lib/siteUrl";
 import "./globals.css";
 
-// Body text: Inter. Headings: Instrument Serif (gives the site an editorial, hand-set feel).
+// Inter for all text; Geist Mono for small technical details (URLs, pipeline steps).
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
-const serif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-});
+const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 const title = `${site.name} | ${site.title}`;
 
@@ -53,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#131210",
+  themeColor: "#09090b",
   colorScheme: "dark",
 };
 
@@ -70,7 +65,7 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${serif.variable} antialiased`}>
+    <html lang="en" className={`${inter.variable} ${mono.variable} antialiased`}>
       <body className="min-h-screen font-sans">
         <script
           type="application/ld+json"

@@ -15,6 +15,7 @@ export type Project = {
   media: Media; // demo video / GIF / screenshot
   diagram: string[]; // small architecture diagram: boxes shown left to right
   diagramNote?: string; // e.g. a retry loop, shown under the diagram
+  metrics: { value: string; label: string }[]; // 3 hard numbers shown on the card
   stack: string[];
   liveUrl: string; // "" = not live yet (button shows "coming soon")
   githubUrl: string;
@@ -22,6 +23,7 @@ export type Project = {
 
 export type SkillGroup = { title: string; items: string[] };
 export type BackgroundItem = { when: string; what: string; where: string };
+export type Highlight = { value: string; label: string };
 
 const GITHUB_USER = "Memoona-Amjad";
 const repo = (name: string) => `https://github.com/${GITHUB_USER}/${name}`;
@@ -34,11 +36,18 @@ export const site = {
     "I build AI agents that plan, use tools, check their own work and get real business tasks done, end to end.",
 
   // Hero text (first thing visitors read).
-  headline: "I build AI agents that do the work,",
-  headlineItalic: "not just talk about it.",
+  headline: "I build AI agents that finish real work.",
   intro:
-    "I'm Memoona, an engineer from Pakistan. My agents plan, call tools, check their own output and stop to ask a person before doing anything that matters. Below are three of them. Each one is live, and you can try it with sample data in about a minute.",
-  currently: "Computer Engineer at GIKI",
+    "Agents that plan, call tools, check their own output and ask a person before anything important. Three of them are live below. Try any one with sample data in about a minute.",
+  location: "Pakistan",
+
+  // Credibility strip under the hero (facts from the CV).
+  highlights: [
+    { value: "3", label: "live agent systems" },
+    { value: "Gold Medalist", label: "BS Computer Science, CGPA 3.86" },
+    { value: "NCAI · NUST", label: "Visiting Researcher" },
+    { value: "GIKI", label: "Computer Engineer" },
+  ] satisfies Highlight[],
   // Public address of the site, used for SEO links and the share image.
   // Leave "" on Vercel: the production URL is then detected automatically.
   // Set it only if you add a custom domain, e.g. "https://memoona.dev".
@@ -75,6 +84,11 @@ export const site = {
         src: "/projects/hiremate.webp",
         alt: "HireMate pauses to ask the user about skill gaps while the agent graph shows its progress",
       },
+      metrics: [
+        { value: "6", label: "specialist agents" },
+        { value: "1", label: "human approval step" },
+        { value: "~2 min", label: "per tailored application" },
+      ],
       diagram: ["Parse CV", "Analyse job", "Score fit", "Human review", "Write CV + letter", "Critic"],
       diagramNote: "Critic score below 80: back to the writer (max 2 retries)",
       stack: ["Python", "LangGraph", "FastAPI", "Gemini", "Pydantic", "SSE", "Next.js", "TypeScript", "Vercel"],
@@ -99,6 +113,11 @@ export const site = {
         src: "/projects/askyourdata.webp",
         alt: "AskYourData showing the agent's steps, its insight and a revenue-by-city chart",
       },
+      metrics: [
+        { value: "3", label: "tries to fix its own code" },
+        { value: "20 s", label: "sandboxed run limit" },
+        { value: "1 click", label: "full auto report" },
+      ],
       diagram: ["Profile data", "Plan", "Write Python", "Safe runner", "Explain"],
       diagramNote: "Code error: the agent reads it and rewrites the code (max 3 tries)",
       stack: ["Python", "Gemini", "pandas", "Plotly", "Streamlit", "pytest"],
@@ -123,6 +142,11 @@ export const site = {
         src: "/projects/shopassist.webp",
         alt: "ShopAssist owner dashboard next to a chat where the agent starts a return step by step",
       },
+      metrics: [
+        { value: "5", label: "tools the agent can use" },
+        { value: "6", label: "max steps per message" },
+        { value: "0", label: "returns started without the customer's OK" },
+      ],
       diagram: ["Chat widget", "Agent loop", "5 tools", "Postgres + pgvector", "Answer"],
       diagramNote: "Main model busy: switches to a backup model; database calls retry up to 3 times",
       stack: ["Next.js", "TypeScript", "Vercel AI SDK", "Gemini", "RAG", "Supabase", "pgvector"],

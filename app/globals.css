@@ -1,21 +1,23 @@
 @import "tailwindcss";
 
-/* Design tokens: a warm, dark, editorial look.
-   Charcoal background, paper-white text, one warm accent (amber) used sparingly.
-   Change colours here and the whole site follows. */
+/* Design tokens: neutral near-black, crisp white type, hairline borders.
+   Green is used only for "live" status. Change colours here and the whole site follows. */
 @theme {
-  --color-bg: #131210;
-  --color-surface: #1a1916;
-  --color-line: #2c2a26;
-  --color-fg: #ece8e1;
-  --color-muted: #a39e94;
-  --color-accent: #e8a45c;
+  --color-bg: #09090b;
+  --color-surface: #111113;
+  --color-surface-2: #18181b;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-line-strong: rgb(255 255 255 / 0.14);
+  --color-fg: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-subtle: #8b8b94;
+  --color-live: #4ade80;
 }
 
 /* Fonts come from next/font (see app/layout.tsx). */
 @theme inline {
   --font-sans: var(--font-inter);
-  --font-serif: var(--font-instrument-serif);
+  --font-mono: var(--font-geist-mono);
 }
 
 :root {
@@ -24,38 +26,24 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem; /* so the sticky nav does not cover section titles */
+  scroll-padding-top: 5rem; /* so the sticky nav does not cover section titles */
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-fg);
+  font-feature-settings: "cv11", "ss01"; /* Inter's cleaner alternate glyphs */
 }
 
 ::selection {
-  background: rgb(232 164 92 / 0.3);
-}
-
-/* Text links: thin underline that turns amber on hover. */
-@utility link {
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.25em;
-  text-decoration-color: rgb(232 164 92 / 0.6);
-  transition:
-    text-decoration-color 0.2s,
-    color 0.2s;
-  &:hover {
-    color: var(--color-accent);
-    text-decoration-color: var(--color-accent);
-  }
+  background: rgb(255 255 255 / 0.2);
 }
 
 /* Hero entrance: plain CSS so it runs before any JavaScript loads.
    Only movement, no fading, so the main text is visible immediately. */
 @keyframes rise {
   from {
-    transform: translateY(12px);
+    transform: translateY(10px);
   }
   to {
     transform: none;

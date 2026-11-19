@@ -1,4 +1,6 @@
 import { site } from "@/content/site";
+import { Button } from "./Button";
+import { Download } from "./icons";
 
 const links = [
   { href: "#work", label: "Work" },
@@ -7,23 +9,29 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-/** Sticky top bar: name on the left, in-page links on the right. */
+/** Sticky top bar: name and role on the left, links and a CV button on the right. */
 export function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-line/70 bg-bg/85 backdrop-blur-md">
-      <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="font-serif text-xl tracking-tight">
-          {site.name}
+    <header className="sticky top-0 z-50 border-b border-line bg-bg/80 backdrop-blur-lg">
+      <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+        <a href="#top" className="flex items-baseline gap-2 text-sm">
+          <span className="font-semibold tracking-tight">{site.name}</span>
+          <span className="hidden text-subtle md:inline">{site.title}</span>
         </a>
-        <ul className="flex items-center gap-4 text-sm text-muted sm:gap-6">
-          {links.map((l) => (
-            <li key={l.href} className={l.href === "#skills" ? "hidden sm:block" : ""}>
-              <a href={l.href} className="transition-colors hover:text-fg">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center gap-5">
+          <ul className="flex items-center gap-5 text-sm text-muted">
+            {links.map((l) => (
+              <li key={l.href} className={l.href === "#work" ? "" : "hidden sm:block"}>
+                <a href={l.href} className="transition-colors hover:text-fg">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <Button href={site.cvUrl} download={site.cvFileName} variant="secondary" size="sm">
+            <Download /> CV
+          </Button>
+        </div>
       </nav>
     </header>
   );
