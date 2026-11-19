@@ -30,8 +30,10 @@ export const site = {
   title: "Agentic AI Engineer",
   valueStatement:
     "I build AI agents that plan, use tools, check their own work and get real business tasks done, end to end.",
-  // Used for SEO, the Open Graph image and the footer.
-  url: "https://TODO-portfolio-url.vercel.app", // TODO: set after deploying
+  // Public address of the site, used for SEO links and the share image.
+  // Leave "" on Vercel: the production URL is then detected automatically.
+  // Set it only if you add a custom domain, e.g. "https://memoona.dev".
+  url: "",
   description:
     "Memoona Amjad, Agentic AI Engineer. Live demos of AI agent systems that plan, call tools, recover from errors and show their work.",
 

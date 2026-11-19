@@ -31,7 +31,7 @@ export function ProjectMedia({ media }: { media: Media }) {
           alt={media.alt}
           fill
           sizes="(min-width: 1024px) 560px, 100vw"
-          className="object-cover object-top"
+          className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
           unoptimized={media.src.endsWith(".gif")}
         />
       </div>

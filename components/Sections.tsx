@@ -1,5 +1,6 @@
 import { site } from "@/content/site";
 import { ProjectCard } from "./ProjectCard";
+import { Reveal } from "./Reveal";
 import { Section } from "./Section";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "./icons";
 
@@ -13,7 +14,9 @@ export function Projects() {
     >
       <div className="space-y-8">
         {site.projects.map((p, i) => (
-          <ProjectCard key={p.name} project={p} index={i} />
+          <Reveal key={p.name}>
+            <ProjectCard project={p} index={i} />
+          </Reveal>
         ))}
       </div>
     </Section>
@@ -24,8 +27,12 @@ export function Skills() {
   return (
     <Section id="skills" label="Skills" title="What I work with">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {site.skills.map((group) => (
-          <div key={group.title} className="rounded-2xl border border-line bg-surface p-6">
+        {site.skills.map((group, i) => (
+          <Reveal
+            key={group.title}
+            delay={(i % 3) * 0.08}
+            className="rounded-2xl border border-line bg-surface p-6"
+          >
             <h3 className="font-medium">{group.title}</h3>
             <ul className="mt-4 flex flex-wrap gap-2">
               {group.items.map((item) => (
@@ -37,7 +44,7 @@ export function Skills() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         ))}
       </div>
     </Section>
@@ -47,11 +54,11 @@ export function Skills() {
 export function About() {
   return (
     <Section id="about" label="About" title="About me">
-      <div className="max-w-3xl space-y-4 text-lg leading-relaxed text-muted">
+      <Reveal className="max-w-3xl space-y-4 text-lg leading-relaxed text-muted">
         {site.about.map((para) => (
           <p key={para}>{para}</p>
         ))}
-      </div>
+      </Reveal>
     </Section>
   );
 }
@@ -76,6 +83,7 @@ export function Contact() {
       title="Let's talk"
       intro="Open to Agentic AI roles and projects. The fastest way to reach me is email."
     >
+      <Reveal>
       <ul className="grid gap-4 sm:grid-cols-3">
         {items.map(({ label, value, href, icon: Icon }) => {
           const inner = (
@@ -103,6 +111,7 @@ export function Contact() {
           );
         })}
       </ul>
+      </Reveal>
     </Section>
   );
 }
