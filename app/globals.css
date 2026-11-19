@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
-/* Design tokens: dark theme with one accent colour (teal). */
+/* Design tokens: light, clean theme. Teal is the main accent, violet the second
+   (used together in gradients). Change colours here and the whole site follows. */
 @theme {
-  --color-bg: #0a0b10;
-  --color-surface: #11131a;
-  --color-surface-2: #171a23;
-  --color-line: #252936;
-  --color-fg: #eceef4;
-  --color-muted: #a0a6b6;
-  --color-accent: #2dd4bf;
-  --color-accent-soft: rgb(45 212 191 / 0.12);
+  --color-bg: #f7f8fb;
+  --color-surface: #ffffff;
+  --color-surface-2: #f1f4f8;
+  --color-line: #e3e7ee;
+  --color-fg: #0f172a;
+  --color-muted: #5b6475;
+  --color-accent: #0f766e;
+  --color-accent-2: #7c3aed;
+  --color-accent-soft: #e6f4f2;
 }
 
 /* Fonts come from next/font (see app/layout.tsx). */
@@ -19,7 +21,7 @@
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -33,7 +35,7 @@ body {
 }
 
 ::selection {
-  background: rgb(45 212 191 / 0.3);
+  background: rgb(13 148 136 / 0.2);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -78,4 +80,18 @@ body {
   .rise {
     animation: none;
   }
+}
+
+/* Soft shadow for white cards. */
+@utility card-shadow {
+  box-shadow:
+    0 1px 2px rgb(15 23 42 / 0.04),
+    0 10px 30px -14px rgb(15 23 42 / 0.14);
+}
+
+/* Teal-to-violet gradient text (used for the job title). */
+@utility text-gradient {
+  background-image: linear-gradient(90deg, #0d9488, #7c3aed);
+  background-clip: text;
+  color: transparent;
 }

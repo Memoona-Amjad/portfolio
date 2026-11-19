@@ -52,10 +52,11 @@ flowchart LR
 - **All content in one file** (`content/site.ts`). Updating text, links or projects never means touching components.
 - **Fully static.** Every page, the share image, the sitemap and the icons are built ahead of time, so the site is fast and costs nothing to host.
 - **"Coming soon" instead of broken links.** If a link in `content/site.ts` is empty (for example the CV), its button shows a greyed-out "coming soon" state.
+- **Light, clean theme.** Soft grey background, white cards with gentle shadows, and a teal-to-violet accent. All colours are design tokens in `app/globals.css`.
 - **Light animations.** framer-motion loads only its small animation bundle (`LazyMotion`). The hero uses plain CSS, so the main text appears immediately. All motion turns off for people who ask their device for reduced motion.
 - **Architecture diagrams drawn with HTML**, not a diagram library, to keep the page light.
 
-Lighthouse (local production build): **Desktop 100 / 100 / 100 / 100**, **Mobile 93–95 / 100 / 100 / 100** (Performance / Accessibility / Best Practices / SEO).
+Lighthouse (local production build): **Desktop 97–100 / 100 / 100 / 100**, **Mobile 88–95 / 100 / 100 / 100** (Performance / Accessibility / Best Practices / SEO).
 
 ## Tech stack
 

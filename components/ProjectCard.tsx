@@ -13,7 +13,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
   const number = String(index + 1).padStart(2, "0");
 
   return (
-    <article className="group grid gap-6 rounded-2xl border border-line bg-surface p-5 transition-colors duration-300 hover:border-accent/30 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-10 lg:gap-y-0">
+    <article className="group grid gap-6 rounded-2xl border border-line bg-surface p-5 card-shadow transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-xl hover:shadow-slate-900/5 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-10 lg:gap-y-0">
       {/* Title block (top-left on desktop, first on mobile) */}
       <header className="lg:col-start-1 lg:row-start-1">
         <p className="font-mono text-xs text-accent">{number}</p>

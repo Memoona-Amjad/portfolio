@@ -12,8 +12,8 @@ type Props = {
 
 const styles = {
   base: "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
-  primary: "bg-accent text-bg hover:bg-accent/85",
-  secondary: "border border-line bg-surface-2 text-fg hover:border-accent/60 hover:text-accent",
+  primary: "bg-linear-to-r from-[#0f766e] to-[#7c3aed] text-white shadow-md shadow-teal-900/10 hover:brightness-110",
+  secondary: "border border-line bg-surface text-fg card-shadow hover:border-accent/50 hover:text-accent",
   pending: "cursor-not-allowed border border-dashed border-line text-muted",
 };
 

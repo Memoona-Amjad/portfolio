@@ -47,8 +47,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0b10",
-  colorScheme: "dark",
+  themeColor: "#f7f8fb",
+  colorScheme: "light",
 };
 
 // Structured data so search engines understand this is a person's portfolio.

@@ -31,7 +31,7 @@ export function Skills() {
           <Reveal
             key={group.title}
             delay={(i % 3) * 0.08}
-            className="rounded-2xl border border-line bg-surface p-6"
+            className="rounded-2xl border border-line bg-surface p-6 card-shadow"
           >
             <h3 className="font-medium">{group.title}</h3>
             <ul className="mt-4 flex flex-wrap gap-2">
@@ -93,7 +93,7 @@ export function Contact() {
               <span className="mt-1 block break-all font-medium">{value}</span>
             </>
           );
-          const card = "block h-full rounded-2xl border border-line bg-surface p-6";
+          const card = "block h-full rounded-2xl border border-line bg-surface p-6 card-shadow";
           return (
             <li key={label}>
               {href ? (
