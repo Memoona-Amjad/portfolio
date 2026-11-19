@@ -37,7 +37,8 @@ export const site = {
   description:
     "Memoona Amjad, Agentic AI Engineer. Live demos of AI agent systems that plan, call tools, recover from errors and show their work.",
 
-  cvUrl: "", // TODO: put the CV at public/cv.pdf, then set this to "/cv.pdf"
+  cvUrl: "/cv.pdf", // the file lives at public/cv.pdf (replace it to update the CV)
+  cvFileName: "Memoona-Amjad-CV.pdf", // name the file gets when downloaded
 
   contact: {
     email: "memoonaamjadoct@gmail.com",
@@ -121,22 +122,115 @@ export const site = {
   skills: [
     {
       title: "Agent frameworks",
-      items: ["LangGraph", "Vercel AI SDK", "Tool calling", "Human-in-the-loop", "Self-correcting loops"],
+      items: [
+        "LangGraph",
+        "LangChain",
+        "LlamaIndex",
+        "CrewAI",
+        "AutoGen",
+        "OpenAI Agents SDK",
+        "Vercel AI SDK",
+        "MCP (Model Context Protocol)",
+        "Tool / function calling",
+        "Multi-agent systems",
+        "Human-in-the-loop",
+        "Self-correcting loops",
+      ],
     },
     {
       title: "LLMs",
-      items: ["Google Gemini", "Structured output", "RAG", "Embeddings", "Prompt design", "Model fallback"],
+      items: [
+        "OpenAI GPT",
+        "Google Gemini",
+        "Anthropic Claude",
+        "xAI Grok",
+        "Meta Llama",
+        "Mistral",
+        "DeepSeek",
+        "Qwen",
+        "Hugging Face",
+        "Ollama (local models)",
+        "RAG",
+        "Embeddings",
+        "Structured output",
+        "Prompt engineering",
+        "Fine-tuning",
+        "Generative AI / GANs",
+      ],
     },
-    { title: "Backend", items: ["Python", "FastAPI", "Node.js", "Server-Sent Events", "Pydantic", "pytest"] },
-    { title: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Streamlit"] },
-    { title: "Data", items: ["pandas", "Plotly", "PostgreSQL", "pgvector", "Supabase"] },
-    { title: "Cloud", items: ["Vercel", "Streamlit Cloud", "Docker", "Git & GitHub"] },
+    {
+      title: "Backend",
+      items: [
+        "Python",
+        "FastAPI",
+        "Flask",
+        "Node.js",
+        "Express",
+        "REST APIs",
+        "Streaming (SSE)",
+        "WebSockets",
+        "Pydantic",
+        "pytest",
+        "PHP",
+        "C++",
+        "C#",
+      ],
+    },
+    {
+      title: "Frontend",
+      items: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Angular",
+        "Tailwind CSS",
+        "HTML & CSS",
+        "Streamlit",
+        "Framer Motion",
+        "Chart.js",
+      ],
+    },
+    {
+      title: "Data",
+      items: [
+        "pandas",
+        "NumPy",
+        "Plotly",
+        "PyTorch",
+        "scikit-learn",
+        "OpenCV",
+        "PostgreSQL",
+        "MySQL",
+        "SQL Server",
+        "pgvector",
+        "Pinecone",
+        "ChromaDB",
+        "FAISS",
+      ],
+    },
+    {
+      title: "Cloud",
+      items: [
+        "AWS",
+        "Google Cloud",
+        "Azure",
+        "Vercel",
+        "Supabase",
+        "Render",
+        "Streamlit Cloud",
+        "Docker",
+        "GitHub Actions (CI/CD)",
+        "Git & GitHub",
+        "Linux",
+      ],
+    },
   ] satisfies SkillGroup[],
 
-  // TODO: replace with Memoona's own bio (background, experience, location).
-  // This draft only states what the projects above show.
+  // Short bio (facts from the CV in public/cv.pdf).
   about: [
     "I'm an Agentic AI Engineer. I build AI systems that don't just chat: they plan, call tools, check their own work and finish real business tasks end to end.",
+    "I graduated as a Gold Medalist in BS Computer Science from Air University, Kamra (CGPA 3.86/4.00). I have worked as a Visiting Researcher at the National Center of Artificial Intelligence (NUST), as a Generative AI Intern at Alright Tech, and I'm currently a Computer Engineer at GIKI. My research on StyleGAN3-based footwear design is in progress for publication.",
     "I care about the parts that make agents safe to use: human approval before important actions, business rules enforced in code, automatic retries and fallbacks when a model fails, and showing every step so people can trust what the agent did.",
   ],
 };

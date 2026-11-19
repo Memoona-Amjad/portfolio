@@ -47,7 +47,7 @@ The *agentic* explanations for each project are in that project's own `docs/HOW_
 ## 5. Common updates
 
 - Change text or links: `content/site.ts`, then commit and push. Vercel redeploys automatically in about a minute.
-- Add the CV: save as `public\cv.pdf`, set `cvUrl: "/cv.pdf"`.
+- Update the CV: replace `public\cv.pdf` with the new PDF (same file name).
 - Add a demo video: put `hiremate.mp4` in `public\projects\` and set
   `media: { kind: "video", src: "/projects/hiremate.mp4", alt: "HireMate demo" }`.
 

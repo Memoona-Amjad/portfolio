@@ -45,7 +45,7 @@ export function Hero() {
           <ButtonLink href="#projects" variant="primary">
             See projects <ArrowRightIcon />
           </ButtonLink>
-          <ButtonLink href={site.cvUrl} download pendingLabel="CV coming soon">
+          <ButtonLink href={site.cvUrl} download={site.cvFileName} pendingLabel="CV coming soon">
             <DownloadIcon /> Download CV
           </ButtonLink>
           <ButtonLink href="#contact">

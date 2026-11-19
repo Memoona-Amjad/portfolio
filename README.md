@@ -93,16 +93,14 @@ npm run start     # serve the production build at http://localhost:3000
 ### How to update the content
 
 - **Text, links, projects, skills, bio:** edit `content/site.ts`.
-- **CV:** save the PDF as `public\cv.pdf`, then set `cvUrl: "/cv.pdf"` in `content/site.ts`.
+- **CV:** replace `public\cv.pdf` with the new PDF (keep the same name).
 - **Project screenshots or GIFs:** put the file in `public\projects\` and point the project's `media` to it.
   For a video use `{ kind: "video", src: "/projects/hiremate.mp4", alt: "..." }`.
 - **Custom domain:** set `url` in `content/site.ts` (otherwise the Vercel address is detected automatically).
 
 ## Limitations and next steps
 
-- **Bio is a draft.** The About text only states what the projects show. It should be replaced with Memoona's own background.
-- **CV not uploaded yet.** The *Download CV* button shows "CV coming soon" until `public/cv.pdf` is added.
 - **Screenshots, not videos.** Each card shows a still image. Short demo GIFs or videos would show the agents' steps in motion.
 - **The live demos run on free tiers** (Gemini free tier, Streamlit Community Cloud, Vercel Hobby). AskYourData's Streamlit app may take a few seconds to wake up after a quiet period, and each demo limits runs per visitor per day.
 - **English only**, single page.
-- **Next steps:** demo GIFs, the real bio and CV, a custom domain, and a short write-up page per project if more depth is needed.
+- **Next steps:** demo GIFs, a custom domain, and a short write-up page per project if more depth is needed.

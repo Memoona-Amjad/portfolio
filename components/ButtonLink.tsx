@@ -5,7 +5,7 @@ type Props = {
   children: ReactNode;
   variant?: "primary" | "secondary";
   external?: boolean;
-  download?: boolean;
+  download?: string; // file name to save as (turns the link into a download)
   pendingLabel?: string; // text shown when href is empty, e.g. "Demo coming soon"
   ariaLabel?: string;
 };
@@ -41,7 +41,7 @@ export function ButtonLink({
       aria-label={ariaLabel}
       className={`${styles.base} ${styles[variant]}`}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      {...(download ? { download: "" } : {})}
+      {...(download ? { download } : {})}
     >
       {children}
     </a>
