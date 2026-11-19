@@ -2,7 +2,7 @@
 
 **A one-page portfolio that shows, in 60 seconds, three working AI agent systems, each with a live demo you can try using sample data.**
 
-**Live site:** _link added after deployment_ <!-- TODO: add the Vercel URL -->
+**Live site: [memoona-amjad.vercel.app](https://memoona-amjad.vercel.app)**
 
 ![Portfolio hero section](docs/screenshot-hero.webp)
 
