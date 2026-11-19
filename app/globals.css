@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/* Design tokens: dark theme with one accent colour (teal). */
+@theme {
+  --color-bg: #0a0b10;
+  --color-surface: #11131a;
+  --color-surface-2: #171a23;
+  --color-line: #252936;
+  --color-fg: #eceef4;
+  --color-muted: #a0a6b6;
+  --color-accent: #2dd4bf;
+  --color-accent-soft: rgb(45 212 191 / 0.12);
+}
+
+/* Fonts come from next/font (see app/layout.tsx). */
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* so the sticky nav does not cover section titles */
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+::selection {
+  background: rgb(45 212 191 / 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
