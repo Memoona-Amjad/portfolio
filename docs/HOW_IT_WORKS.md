@@ -30,7 +30,7 @@ The *agentic* explanations for each project are in that project's own `docs/HOW_
 ## 3. Why it is designed this way
 
 - **One content file**: anyone can update text or links in two minutes without touching design code.
-- **Static site**: the fastest and most reliable option for a portfolio. Lighthouse scores are 93–100.
+- **Static site**: the fastest and most reliable option for a portfolio. Lighthouse on the live site: 100 on desktop, 92–95 on mobile.
 - **The project card shows the agent at work** (steps, tool calls, approvals), not just the UI, because the point is to prove
   the projects are *agents*, not chatbots.
 - **"Live demo" is the main button** on each card: a CEO can try a project in one click with sample data.
@@ -61,7 +61,7 @@ The *agentic* explanations for each project are in that project's own `docs/HOW_
    Each one plans, calls tools, checks its own results and retries. HireMate pauses for human approval and has a critic that sends work back.
    AskYourData fixes its own code errors. ShopAssist enforces business rules inside its tools. Every demo shows these steps on screen.
 4. **"How fast is the site?"**
-   Lighthouse: 100 on desktop and 93–95 on mobile for performance, and 100 for accessibility, best practices and SEO.
+   Lighthouse: 100 on desktop and 92–95 on mobile for performance, and 100 for accessibility, best practices and SEO.
 5. **"How would you update it?"**
    Edit `content/site.ts` and push. Vercel redeploys automatically.
 6. **"What did you do about accessibility?"**

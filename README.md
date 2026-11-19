@@ -56,7 +56,7 @@ flowchart LR
 - **Light animations.** framer-motion loads only its small animation bundle (`LazyMotion`). The hero uses plain CSS, so the main text appears immediately. All motion turns off for people who ask their device for reduced motion.
 - **Architecture diagrams drawn with HTML**, not a diagram library, to keep the page light.
 
-Lighthouse (local production build): **Desktop 97–100 / 100 / 100 / 100**, **Mobile 88–95 / 100 / 100 / 100** (Performance / Accessibility / Best Practices / SEO).
+Lighthouse (live site): **Desktop 100 / 100 / 100 / 100**, **Mobile 92–95 / 100 / 100 / 100** (Performance / Accessibility / Best Practices / SEO).
 
 ## Tech stack
 
