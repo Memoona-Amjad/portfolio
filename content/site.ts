@@ -1,6 +1,5 @@
 // All the text and links on the site live in this one file.
 // Edit this file to change the site; you never need to touch the components.
-// Anything still unknown is marked TODO.
 
 export type Media =
   | { kind: "image"; src: string; alt: string }
@@ -9,6 +8,7 @@ export type Media =
 
 export type Project = {
   name: string;
+  kind: string; // short label shown next to the name, e.g. "Multi-agent workflow"
   pitch: string; // one line
   problem: string; // 1-2 lines, business language
   agentSteps: string[]; // 3-4 short points
@@ -21,6 +21,7 @@ export type Project = {
 };
 
 export type SkillGroup = { title: string; items: string[] };
+export type BackgroundItem = { when: string; what: string; where: string };
 
 const GITHUB_USER = "Memoona-Amjad";
 const repo = (name: string) => `https://github.com/${GITHUB_USER}/${name}`;
@@ -28,8 +29,16 @@ const repo = (name: string) => `https://github.com/${GITHUB_USER}/${name}`;
 export const site = {
   name: "Memoona Amjad",
   title: "Agentic AI Engineer",
+  // Short line used for SEO and the share image.
   valueStatement:
     "I build AI agents that plan, use tools, check their own work and get real business tasks done, end to end.",
+
+  // Hero text (first thing visitors read).
+  headline: "I build AI agents that do the work,",
+  headlineItalic: "not just talk about it.",
+  intro:
+    "I'm Memoona, an engineer from Pakistan. My agents plan, call tools, check their own output and stop to ask a person before doing anything that matters. Below are three of them. Each one is live, and you can try it with sample data in about a minute.",
+  currently: "Computer Engineer at GIKI",
   // Public address of the site, used for SEO links and the share image.
   // Leave "" on Vercel: the production URL is then detected automatically.
   // Set it only if you add a custom domain, e.g. "https://memoona.dev".
@@ -50,6 +59,7 @@ export const site = {
   projects: [
     {
       name: "HireMate",
+      kind: "Multi-agent workflow",
       pitch:
         "A team of AI agents that tailors a CV and cover letter to a job, asks before changing anything, and checks its own work.",
       problem:
@@ -73,6 +83,7 @@ export const site = {
     },
     {
       name: "AskYourData",
+      kind: "Self-correcting data analyst",
       pitch:
         "An AI data analyst: ask a spreadsheet a question in plain English and get a chart and a short business insight.",
       problem:
@@ -96,6 +107,7 @@ export const site = {
     },
     {
       name: "ShopAssist",
+      kind: "Tool-using support agent",
       pitch:
         "An AI support agent for an online store that answers and acts: checks orders, starts returns, finds products and hands upset customers to a human.",
       problem:
@@ -227,10 +239,15 @@ export const site = {
     },
   ] satisfies SkillGroup[],
 
-  // Short bio (facts from the CV in public/cv.pdf).
+  // About: short first-person bio, then a background list (facts from public/cv.pdf).
   about: [
-    "I'm an Agentic AI Engineer. I build AI systems that don't just chat: they plan, call tools, check their own work and finish real business tasks end to end.",
-    "I graduated as a Gold Medalist in BS Computer Science from Air University, Kamra (CGPA 3.86/4.00). I have worked as a Visiting Researcher at the National Center of Artificial Intelligence (NUST), as a Generative AI Intern at Alright Tech, and I'm currently a Computer Engineer at GIKI. My research on StyleGAN3-based footwear design is in progress for publication.",
-    "I care about the parts that make agents safe to use: human approval before important actions, business rules enforced in code, automatic retries and fallbacks when a model fails, and showing every step so people can trust what the agent did.",
+    "I got into AI through generative models. My final-year project used GANs to design new shoes from photos, and that work is now becoming a research paper. Since then I've moved from models that generate things to agents that get things done.",
+    "What I care about most is the boring part that makes agents trustworthy: business rules enforced in code rather than in a prompt, a human approval step before anything important, retries and fallbacks when a model fails, and a clear record of every step so people can see what the agent actually did.",
   ],
+  background: [
+    { when: "2025 – now", what: "Computer Engineer", where: "GIKI" },
+    { when: "2025", what: "Visiting Researcher", where: "National Center of Artificial Intelligence, NUST" },
+    { when: "2024", what: "Generative AI Intern", where: "Alright Tech" },
+    { when: "2021 – 2025", what: "BS Computer Science, Gold Medalist (CGPA 3.86)", where: "Air University, Kamra" },
+  ] satisfies BackgroundItem[],
 };

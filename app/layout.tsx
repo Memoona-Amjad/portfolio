@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import { site } from "@/content/site";
 import { siteUrl } from "@/lib/siteUrl";
 import "./globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+// Body text: Inter. Headings: Instrument Serif (gives the site an editorial, hand-set feel).
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+const serif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+});
 
 const title = `${site.name} | ${site.title}`;
 
@@ -47,8 +53,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f8fb",
-  colorScheme: "light",
+  themeColor: "#131210",
+  colorScheme: "dark",
 };
 
 // Structured data so search engines understand this is a person's portfolio.
@@ -64,7 +70,7 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en" className={`${inter.variable} ${serif.variable} antialiased`}>
       <body className="min-h-screen font-sans">
         <script
           type="application/ld+json"

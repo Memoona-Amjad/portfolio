@@ -1,32 +1,30 @@
 @import "tailwindcss";
 
-/* Design tokens: light, clean theme. Teal is the main accent, violet the second
-   (used together in gradients). Change colours here and the whole site follows. */
+/* Design tokens: a warm, dark, editorial look.
+   Charcoal background, paper-white text, one warm accent (amber) used sparingly.
+   Change colours here and the whole site follows. */
 @theme {
-  --color-bg: #f7f8fb;
-  --color-surface: #ffffff;
-  --color-surface-2: #f1f4f8;
-  --color-line: #e3e7ee;
-  --color-fg: #0f172a;
-  --color-muted: #5b6475;
-  --color-accent: #0f766e;
-  --color-accent-2: #7c3aed;
-  --color-accent-soft: #e6f4f2;
+  --color-bg: #131210;
+  --color-surface: #1a1916;
+  --color-line: #2c2a26;
+  --color-fg: #ece8e1;
+  --color-muted: #a39e94;
+  --color-accent: #e8a45c;
 }
 
 /* Fonts come from next/font (see app/layout.tsx). */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-instrument-serif);
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem; /* so the sticky nav does not cover section titles */
+  scroll-padding-top: 4.5rem; /* so the sticky nav does not cover section titles */
 }
 
 body {
@@ -35,36 +33,29 @@ body {
 }
 
 ::selection {
-  background: rgb(13 148 136 / 0.2);
+  background: rgb(232 164 92 / 0.3);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+/* Text links: thin underline that turns amber on hover. */
+@utility link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  text-decoration-color: rgb(232 164 92 / 0.6);
+  transition:
+    text-decoration-color 0.2s,
+    color 0.2s;
+  &:hover {
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
   }
 }
 
-/* Hero entrance: plain CSS so it runs before any JavaScript loads. */
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.fade-up {
-  animation: fade-up 0.6s ease-out both;
-}
-
-/* Hero text only slides up (it stays visible), so the page's main text paints
-   immediately. Fading it in would delay "Largest Contentful Paint". */
+/* Hero entrance: plain CSS so it runs before any JavaScript loads.
+   Only movement, no fading, so the main text is visible immediately. */
 @keyframes rise {
   from {
-    transform: translateY(14px);
+    transform: translateY(12px);
   }
   to {
     transform: none;
@@ -72,26 +63,14 @@ body {
 }
 
 .rise {
-  animation: rise 0.6s ease-out both;
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-up,
+  html {
+    scroll-behavior: auto;
+  }
   .rise {
     animation: none;
   }
-}
-
-/* Soft shadow for white cards. */
-@utility card-shadow {
-  box-shadow:
-    0 1px 2px rgb(15 23 42 / 0.04),
-    0 10px 30px -14px rgb(15 23 42 / 0.14);
-}
-
-/* Teal-to-violet gradient text (used for the job title). */
-@utility text-gradient {
-  background-image: linear-gradient(90deg, #0d9488, #7c3aed);
-  background-clip: text;
-  color: transparent;
 }

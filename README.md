@@ -6,7 +6,7 @@
 
 ![Portfolio hero section](docs/screenshot-hero.webp)
 
-![A project card: pitch, problem, what the agent does, demo screenshot and architecture](docs/screenshot-project.webp)
+![A project entry: pitch, screenshot of the agent at work, problem, what the agent does and how it's built](docs/screenshot-project.webp)
 
 <!-- TODO: replace with a short screen-recording GIF (docs/demo.gif) once recorded. -->
 
@@ -20,10 +20,10 @@ and to try them without setting anything up.
 
 ## What the site does
 
-1. **Hero:** name, role and a one-line value statement, with *See projects*, *Download CV* and *Contact* buttons.
-2. **Projects:** one card per project (HireMate, AskYourData, ShopAssist). Each card has the pitch, the business problem, what the agent does, a screenshot of the agent at work, a small architecture diagram, tech badges, and **Live demo** + **GitHub** buttons.
-3. **What I work with:** skills grouped by Agent frameworks, LLMs, Backend, Frontend, Data and Cloud.
-4. **About** and **Contact:** short bio, plus email, GitHub and LinkedIn.
+1. **Intro:** a short first-person introduction, with links to the work, the CV and email.
+2. **Selected work:** one entry per project (HireMate, AskYourData, ShopAssist) with the pitch, a screenshot of the agent at work, the business problem, what the agent does, how it's built, the tech used, and links to the **live demo** and the **code**.
+3. **What I work with:** a simple list of skills grouped by Agent frameworks, LLMs, Backend, Frontend, Data and Cloud.
+4. **About** and **Contact:** a short bio with background (education, research, roles), plus email, GitHub, LinkedIn and the CV.
 
 The projects shown:
 
@@ -45,14 +45,14 @@ flowchart LR
     P & M & OG --> B["next build<br/>(fully static pages)"]
     B --> V["Vercel CDN"]
     V --> U(["Visitor"])
-    U -- "Live demo buttons" --> D["HireMate · AskYourData · ShopAssist"]
+    U -- "Live demo links" --> D["HireMate · AskYourData · ShopAssist"]
 ```
 
 **Design choices**
 - **All content in one file** (`content/site.ts`). Updating text, links or projects never means touching components.
 - **Fully static.** Every page, the share image, the sitemap and the icons are built ahead of time, so the site is fast and costs nothing to host.
-- **"Coming soon" instead of broken links.** If a link in `content/site.ts` is empty (for example the CV), its button shows a greyed-out "coming soon" state.
-- **Light, clean theme.** Soft grey background, white cards with gentle shadows, and a teal-to-violet accent. All colours are design tokens in `app/globals.css`.
+- **No broken links.** If a project's `liveUrl` in `content/site.ts` is empty, the site says "Live demo coming soon" instead of linking nowhere.
+- **Editorial, typography-led design.** Warm charcoal background, a serif display face (Instrument Serif) with Inter for body text, one amber accent, plain underlined text links, and thin rules instead of boxes and badges. All colours are design tokens in `app/globals.css`.
 - **Light animations.** framer-motion loads only its small animation bundle (`LazyMotion`). The hero uses plain CSS, so the main text appears immediately. All motion turns off for people who ask their device for reduced motion.
 - **Architecture diagrams drawn with HTML**, not a diagram library, to keep the page light.
 
@@ -63,7 +63,7 @@ Lighthouse (live site): **Desktop 100 / 100 / 100 / 100**, **Mobile 92–95 / 10
 | Area | Tools |
 |---|---|
 | Framework | Next.js 16 (App Router), React 19, TypeScript |
-| Styling | Tailwind CSS 4, Geist font via `next/font` |
+| Styling | Tailwind CSS 4, Instrument Serif + Inter via `next/font` |
 | Animation | framer-motion (`LazyMotion` + `whileInView`), CSS keyframes |
 | SEO | Next.js Metadata API, generated Open Graph image (`next/og`), sitemap, robots, JSON-LD |
 | Hosting | Vercel (free Hobby plan) |
@@ -101,7 +101,7 @@ npm run start     # serve the production build at http://localhost:3000
 
 ## Limitations and next steps
 
-- **Screenshots, not videos.** Each card shows a still image. Short demo GIFs or videos would show the agents' steps in motion.
+- **Screenshots, not videos.** Each project shows a still image. Short demo GIFs or videos would show the agents' steps in motion.
 - **The live demos run on free tiers** (Gemini free tier, Streamlit Community Cloud, Vercel Hobby). AskYourData's Streamlit app may take a few seconds to wake up after a quiet period, and each demo limits runs per visitor per day.
 - **English only**, single page.
 - **Next steps:** demo GIFs, a custom domain, and a short write-up page per project if more depth is needed.

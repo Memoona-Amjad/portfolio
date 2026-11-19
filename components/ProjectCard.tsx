@@ -1,79 +1,79 @@
 import type { Project } from "@/content/site";
 import { ArchDiagram } from "./ArchDiagram";
-import { ButtonLink } from "./ButtonLink";
 import { ProjectMedia } from "./ProjectMedia";
-import { ExternalIcon, GitHubIcon } from "./icons";
 
 /**
- * One rich card per project.
- * Desktop: story on the left, demo + diagram on the right.
- * Mobile: title, then the demo picture, then the details (so the picture is seen early).
+ * One project, laid out like a magazine entry:
+ * name and pitch, a large screenshot, then three short columns
+ * (the problem, what the agent does, how it's built) and two links.
  */
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const number = String(index + 1).padStart(2, "0");
-
+export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group grid gap-6 rounded-2xl border border-line bg-surface p-5 card-shadow transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-xl hover:shadow-slate-900/5 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-10 lg:gap-y-0">
-      {/* Title block (top-left on desktop, first on mobile) */}
-      <header className="lg:col-start-1 lg:row-start-1">
-        <p className="font-mono text-xs text-accent">{number}</p>
-        <h3 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{project.name}</h3>
-        <p className="mt-2 text-base text-fg/90 sm:text-lg">{project.pitch}</p>
+    <article>
+      <header className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+        <h3 className="font-serif text-4xl tracking-tight sm:text-5xl">
+          {project.name}
+        </h3>
+        <p className="text-sm text-muted">{project.kind}</p>
       </header>
 
-      {/* Demo + architecture (right column on desktop, second on mobile) */}
-      <div className="flex flex-col gap-4 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+      <p className="mt-4 max-w-3xl text-lg leading-relaxed sm:text-xl">{project.pitch}</p>
+
+      <div className="mt-8">
         <ProjectMedia media={project.media} />
-        <ArchDiagram steps={project.diagram} note={project.diagramNote} />
       </div>
 
-      {/* Details (bottom-left on desktop, last on mobile) */}
-      <div className="flex flex-col lg:col-start-1 lg:row-start-2">
-        <p className="text-sm leading-relaxed text-muted lg:mt-5">
-          <span className="font-medium text-fg">The problem: </span>
-          {project.problem}
-        </p>
+      <div className="mt-8 grid gap-8 text-[15px] leading-relaxed md:grid-cols-3 md:gap-10">
+        <div>
+          <h4 className="text-sm font-medium text-accent">The problem</h4>
+          <p className="mt-2 text-muted">{project.problem}</p>
+        </div>
 
-        <h4 className="mt-6 text-sm font-medium">What the agent does</h4>
-        <ul className="mt-3 space-y-2.5">
-          {project.agentSteps.map((step) => (
-            <li key={step} className="flex gap-3 text-sm leading-relaxed text-muted">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-              <span>{step}</span>
-            </li>
-          ))}
-        </ul>
+        <div>
+          <h4 className="text-sm font-medium text-accent">What the agent does</h4>
+          <ul className="mt-2 space-y-2 text-muted">
+            {project.agentSteps.map((step) => (
+              <li key={step} className="flex gap-2">
+                <span aria-hidden className="text-muted/60">–</span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <ul className="mt-6 flex flex-wrap gap-2" aria-label="Tech stack">
-          {project.stack.map((tech) => (
-            <li
-              key={tech}
-              className="rounded-full border border-line bg-surface-2 px-2.5 py-1 font-mono text-[11px] text-muted"
-            >
-              {tech}
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-8 flex flex-wrap gap-3 lg:mt-auto lg:pt-8">
-          <ButtonLink
-            href={project.liveUrl}
-            variant="primary"
-            external
-            pendingLabel="Live demo coming soon"
-            ariaLabel={`${project.name} live demo (opens in a new tab)`}
-          >
-            Live demo <ExternalIcon />
-          </ButtonLink>
-          <ButtonLink
-            href={project.githubUrl}
-            external
-            ariaLabel={`${project.name} source code on GitHub (opens in a new tab)`}
-          >
-            <GitHubIcon /> GitHub
-          </ButtonLink>
+        <div>
+          <h4 className="text-sm font-medium text-accent">How it&apos;s built</h4>
+          <div className="mt-2">
+            <ArchDiagram steps={project.diagram} note={project.diagramNote} />
+          </div>
+          <p className="mt-4 text-sm text-muted">{project.stack.join(" · ")}</p>
         </div>
       </div>
+
+      <p className="mt-8 flex flex-wrap gap-x-8 gap-y-2">
+        {project.liveUrl ? (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link"
+            aria-label={`Try the ${project.name} live demo (opens in a new tab)`}
+          >
+            Try the live demo ↗
+          </a>
+        ) : (
+          <span className="text-muted">Live demo coming soon</span>
+        )}
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link"
+          aria-label={`${project.name} source code on GitHub (opens in a new tab)`}
+        >
+          Read the code ↗
+        </a>
+      </p>
     </article>
   );
 }

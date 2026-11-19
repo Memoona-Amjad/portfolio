@@ -1,35 +1,21 @@
 /**
- * A small architecture diagram drawn with plain HTML boxes and arrows.
- * (Lighter and faster than loading a diagram library in the browser.)
+ * How a project is built, as a short numbered flow (plain HTML, no diagram library).
+ * The optional note describes the loop back, e.g. a retry.
  */
 export function ArchDiagram({ steps, note }: { steps: string[]; note?: string }) {
   return (
-    <figure className="rounded-xl border border-line bg-surface-2 p-4">
-      <figcaption className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-        Architecture
-      </figcaption>
-      <ol className="flex flex-wrap items-center gap-y-2 text-xs sm:text-[13px]">
+    <div>
+      <ol className="space-y-1.5 text-sm">
         {steps.map((step, i) => (
-          <li key={step} className="flex items-center">
-            <span className="rounded-md border border-line bg-surface px-2.5 py-1.5 leading-tight text-fg">
-              {step}
-            </span>
-            {i < steps.length - 1 && (
-              <span className="px-1.5 text-accent" aria-hidden>
-                →
-              </span>
-            )}
+          <li key={step} className="flex gap-3">
+            <span className="w-5 shrink-0 text-right tabular-nums text-muted">{i + 1}</span>
+            <span>{step}</span>
           </li>
         ))}
       </ol>
       {note && (
-        <p className="mt-3 flex items-start gap-2 text-xs text-muted">
-          <span className="text-accent" aria-hidden>
-            ↺
-          </span>
-          {note}
-        </p>
+        <p className="mt-3 border-l border-accent/60 pl-3 text-sm italic text-muted">{note}</p>
       )}
-    </figure>
+    </div>
   );
 }

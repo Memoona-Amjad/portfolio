@@ -1,28 +1,25 @@
 import type { ReactNode } from "react";
 import { Reveal } from "./Reveal";
 
-/** A page section with a small label, a heading and consistent spacing. */
+/** A page section: a thin rule, a serif heading with an optional note beside it, then the content. */
 export function Section({
   id,
-  label,
   title,
   intro,
   children,
 }: {
   id: string;
-  label: string;
   title: string;
   intro?: string;
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">{label}</p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
-        {intro && <p className="mt-4 max-w-2xl text-muted">{intro}</p>}
+    <section id={id} className="mx-auto w-full max-w-5xl px-5 py-16 sm:px-8 sm:py-24">
+      <Reveal className="grid gap-4 border-t border-line pt-8 sm:grid-cols-[1fr_1.4fr] sm:gap-10">
+        <h2 className="font-serif text-4xl tracking-tight sm:text-5xl">{title}</h2>
+        {intro && <p className="max-w-xl text-muted sm:pt-3">{intro}</p>}
       </Reveal>
-      <div className="mt-12">{children}</div>
+      <div className="mt-12 sm:mt-16">{children}</div>
     </section>
   );
 }

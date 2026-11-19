@@ -2,20 +2,18 @@ import { site } from "@/content/site";
 import { ProjectCard } from "./ProjectCard";
 import { Reveal } from "./Reveal";
 import { Section } from "./Section";
-import { GitHubIcon, LinkedInIcon, MailIcon } from "./icons";
 
 export function Projects() {
   return (
     <Section
-      id="projects"
-      label="Projects"
-      title="Agents that do real work"
-      intro="Each project has a live demo with sample data, so you can try it in a minute without uploading anything. Every demo shows the agent's steps, tool calls and retries on screen."
+      id="work"
+      title="Selected work"
+      intro="Three agents, all live. Each demo runs on sample data, so you don't need to upload anything, and each one shows its steps, tool calls and retries as it works."
     >
-      <div className="space-y-8">
-        {site.projects.map((p, i) => (
+      <div className="space-y-24 sm:space-y-32">
+        {site.projects.map((p) => (
           <Reveal key={p.name}>
-            <ProjectCard project={p} index={i} />
+            <ProjectCard project={p} />
           </Reveal>
         ))}
       </div>
@@ -23,108 +21,83 @@ export function Projects() {
   );
 }
 
+/** Skills as a simple two-column list: group name on the left, tools on the right. */
 export function Skills() {
   return (
-    <Section id="skills" label="Skills" title="What I work with">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {site.skills.map((group, i) => (
-          <Reveal
-            key={group.title}
-            delay={(i % 3) * 0.08}
-            className="rounded-2xl border border-line bg-surface p-6 card-shadow"
-          >
-            <h3 className="font-medium">{group.title}</h3>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {group.items.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-full bg-accent-soft px-3 py-1 text-xs text-accent"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        ))}
-      </div>
+    <Section id="skills" title="What I work with">
+      <Reveal>
+        <dl className="divide-y divide-line border-y border-line">
+          {site.skills.map((group) => (
+            <div key={group.title} className="grid gap-1 py-5 sm:grid-cols-[12rem_1fr] sm:gap-10">
+              <dt className="text-sm font-medium text-accent sm:pt-0.5">{group.title}</dt>
+              <dd className="leading-relaxed text-muted">{group.items.join(", ")}</dd>
+            </div>
+          ))}
+        </dl>
+      </Reveal>
     </Section>
   );
 }
 
 export function About() {
   return (
-    <Section id="about" label="About" title="About me">
-      <Reveal className="max-w-3xl space-y-4 text-lg leading-relaxed text-muted">
-        {site.about.map((para) => (
-          <p key={para}>{para}</p>
-        ))}
+    <Section id="about" title="About">
+      <Reveal className="grid gap-12 md:grid-cols-[1.4fr_1fr] md:gap-16">
+        <div className="space-y-5 text-lg leading-relaxed text-muted">
+          {site.about.map((para) => (
+            <p key={para}>{para}</p>
+          ))}
+        </div>
+        <ol className="space-y-5 text-[15px]">
+          {site.background.map((item) => (
+            <li key={item.what}>
+              <p className="text-sm tabular-nums text-muted">{item.when}</p>
+              <p className="mt-0.5">{item.what}</p>
+              <p className="text-muted">{item.where}</p>
+            </li>
+          ))}
+        </ol>
       </Reveal>
     </Section>
   );
 }
 
 export function Contact() {
-  const { email, github, githubHandle, linkedin } = site.contact;
-  const items = [
-    { label: "Email", value: email, href: `mailto:${email}`, icon: MailIcon },
-    { label: "GitHub", value: githubHandle, href: github, icon: GitHubIcon },
-    {
-      label: "LinkedIn",
-      value: linkedin ? "View profile" : "Coming soon", // TODO: LinkedIn URL in content/site.ts
-      href: linkedin,
-      icon: LinkedInIcon,
-    },
-  ];
-
+  const { email, github, linkedin } = site.contact;
   return (
-    <Section
-      id="contact"
-      label="Contact"
-      title="Let's talk"
-      intro="Open to Agentic AI roles and projects. The fastest way to reach me is email."
-    >
-      <Reveal>
-      <ul className="grid gap-4 sm:grid-cols-3">
-        {items.map(({ label, value, href, icon: Icon }) => {
-          const inner = (
-            <>
-              <Icon className="h-5 w-5 text-accent" />
-              <span className="mt-4 block text-sm text-muted">{label}</span>
-              <span className="mt-1 block break-all font-medium">{value}</span>
-            </>
-          );
-          const card = "block h-full rounded-2xl border border-line bg-surface p-6 card-shadow";
-          return (
-            <li key={label}>
-              {href ? (
-                <a
-                  href={href}
-                  className={`${card} transition-colors hover:border-accent/60`}
-                  {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                >
-                  {inner}
-                </a>
-              ) : (
-                <div className={`${card} border-dashed`}>{inner}</div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+    <section id="contact" className="mx-auto w-full max-w-5xl px-5 pb-24 pt-16 sm:px-8 sm:pb-32 sm:pt-24">
+      <Reveal className="border-t border-line pt-10">
+        <h2 className="max-w-3xl font-serif text-4xl leading-tight tracking-tight sm:text-6xl">
+          Have a process an agent could take off your team&apos;s plate?{" "}
+          <em className="text-accent">Let&apos;s talk.</em>
+        </h2>
+        <p className="mt-8 text-lg">
+          <a href={`mailto:${email}`} className="link break-all">
+            {email}
+          </a>
+        </p>
+        <p className="mt-4 flex flex-wrap gap-x-8 gap-y-2 text-muted">
+          <a href={github} target="_blank" rel="noopener noreferrer" className="link">
+            GitHub ↗
+          </a>
+          {linkedin && (
+            <a href={linkedin} target="_blank" rel="noopener noreferrer" className="link">
+              LinkedIn ↗
+            </a>
+          )}
+          <a href={site.cvUrl} download={site.cvFileName} className="link">
+            CV (PDF)
+          </a>
+        </p>
       </Reveal>
-    </Section>
+    </section>
   );
 }
 
 export function Footer() {
   return (
-    <footer className="border-t border-line">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-8 text-sm text-muted sm:flex-row sm:justify-between sm:px-8">
-        <p>
-          © {site.name}
-        </p>
-        <p>Built with Next.js, TypeScript and Tailwind CSS.</p>
-      </div>
+    <footer className="mx-auto max-w-5xl px-5 pb-10 text-sm text-muted sm:px-8">
+      <p>Designed and built by {site.name}.</p>
     </footer>
   );
 }
